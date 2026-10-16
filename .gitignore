@@ -1,0 +1,4 @@
+# Ignore all versioned backup files
+index.v*.html
+index.artifact.html
+index.v1-backup.html
