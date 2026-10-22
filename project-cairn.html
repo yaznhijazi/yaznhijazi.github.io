@@ -1402,6 +1402,54 @@
   .sg-tg{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:12px;} .seg{display:inline-flex;padding:4px;border-radius:999px;background:#E3F2EA;gap:2px;} .seg button{padding:7px 13px;border:0;border-radius:999px;background:transparent;font:inherit;font-weight:700;font-size:14px;color:#0b5a33;cursor:pointer;} .seg button.on{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15);}
   @media (max-width:900px){ .px-glance{grid-template-columns:1fr;} .px-steps{grid-template-columns:1fr;} .px-steps::before,.px-steps::after{display:none;} .px-st{display:grid;grid-template-columns:54px 1fr;column-gap:14px;} .px-st .d{grid-row:span 2;} .px-st h3{margin:2px 0 4px;} }
   @media (prefers-reduced-motion:reduce){ .sg *{animation:none !important;} }
+
+  /* phones: one column, readable sizes, nothing wider than the screen */
+  @media (max-width:900px){
+    html,body.px{overflow-x:clip;max-width:100%;}
+    body.px .px-hero,body.px-together .px-hero,body.px-cairn .px-hero,body.px-candor .px-hero{grid-template-columns:minmax(0,1fr) !important;min-height:0;padding:96px 18px 46px;gap:34px;align-items:start;}
+    body.px .px-copy{min-width:0;}
+    body.px .px-title,body.px-together .px-title{font-size:clamp(46px,16vw,76px) !important;gap:14px;letter-spacing:-.05em;flex-wrap:nowrap;}
+    body.px .px-logo{width:clamp(50px,15vw,76px);height:clamp(50px,15vw,76px);}
+    body.px .px-lead{font-size:17px;line-height:1.5;}
+    body.px .px-meta li{flex:1 1 100%;max-width:none;}
+    body.px .sg{width:100%;max-width:460px;margin:0 auto;min-width:0;}
+    body.px .px-nav{max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none;top:10px;} body.px .px-nav::-webkit-scrollbar{display:none;}
+    body.px .px-nav a{padding:8px 13px;font-size:14px;}
+    body.px .px-band{margin:-14px -8% 0;}
+    body.px .px-w,body.px .px-sec{min-width:0;}
+    body.px .px-big{font-size:clamp(26px,7.6vw,40px);line-height:1.18;}
+    body.px .px-glance{padding-inline:18px;}
+    body.px img,body.px video{max-width:100%;}
+    body.px .px-foot{padding-bottom:110px;}
+    body.px .px-feats{grid-template-columns:minmax(0,1fr) !important;}
+    body.px .px-f,body.px .px-f:nth-child(n){grid-column:1 / -1 !important;}
+  }
+
+  /* ---------- project pages: section rail, keyboard hint, swipeable screens on phones ---------- */
+  .px-rail{display:none;}
+  @media (min-width:1280px){
+    .px-rail{display:flex;flex-direction:column;gap:2px;position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:60;padding:10px 8px 8px;border-radius:22px;background:rgba(20,20,28,.5);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22);}
+    .px-rail button{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:5px 4px 5px 10px;border:0;background:none;color:#fff;font:700 13px 'Bricolage Grotesque',sans-serif;cursor:pointer;border-radius:999px;}
+    .px-rail button span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .3s ease,opacity .25s ease;}
+    .px-rail:hover button span,.px-rail button.on span{max-width:120px;opacity:1;}
+    .px-rail button i{display:block;width:11px;height:11px;border-radius:50%;border:2.5px solid #fff;background:transparent;transition:background-color .2s ease,transform .2s ease;flex:none;}
+    .px-rail button.on i{background:var(--acc);border-color:var(--acc);transform:scale(1.3);}
+    .px-rail .hint{margin:6px 4px 0;padding-top:7px;border-top:1px solid rgba(255,255,255,.25);font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:rgba(255,255,255,.75);text-align:center;white-space:nowrap;}
+    body.px-light-section .px-rail{background:rgba(255,255,255,.72);border-color:rgba(20,20,28,.18);} body.px-light-section .px-rail button{color:#14171B;} body.px-light-section .px-rail button i{border-color:#14171B;} body.px-light-section .px-rail .hint{color:#4a4f5a;border-color:rgba(20,20,28,.2);}
+  }
+  @media (max-width:900px){
+    .px-show{height:auto !important;}
+    .px-pin{position:static !important;height:auto !important;padding:54px 0 10px !important;gap:12px !important;}
+    .px-pin > div:first-child{padding:0 18px;}
+    .px-frame{padding:0;perspective:none;}
+    .px-screen{transform:none !important;margin:0 !important;border-radius:0 !important;border-inline:0 !important;box-shadow:none !important;}
+    .px-img{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;aspect-ratio:auto !important;gap:0;scrollbar-width:none;background:transparent;-webkit-overflow-scrolling:touch;}
+    .px-img::-webkit-scrollbar{display:none;}
+    .px-img img{position:static !important;flex:0 0 100%;width:100%;height:auto !important;aspect-ratio:16/10;object-fit:cover;opacity:1 !important;transform:none !important;scroll-snap-align:center;}
+    .px-swipe{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;font:500 11.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+    .px-swipe i{display:block;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.3;transition:opacity .2s ease,width .2s ease;} .px-swipe i.on{opacity:1;width:22px;border-radius:5px;color:var(--mid);background:var(--mid);}
+  }
+  @media (min-width:901px){ .px-swipe{display:none;} }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet"></head>
 <body class="px px-cairn" style="--dark:#14171B;--mid:#2E46F2;--acc:#8FA0FF;--soft:#E9ECFF;--ink0:#14171B;--mute:#5A5A66;--nmid:#0C7A45;">
@@ -1427,9 +1475,9 @@
 <div class="px-band" aria-hidden="true"><div><span>13 AI teammates</span><span>Tickets, not chats</span><span>Approval first</span><span>A live 3D office</span><span>Bots that learn</span><span>Bring your own model</span><span>Next.js 16</span><span>React 19</span><span>Tailwind v4</span><span>three.js + React Three Fiber</span><span>React Flow</span><span>Mermaid</span><span>Claude, GPT and Gemini</span><span>Bitrix24 REST</span><span>n8n API and MCP</span><span>Metabase API</span><span>SMTP</span><span>13 AI teammates</span><span>Tickets, not chats</span><span>Approval first</span><span>A live 3D office</span><span>Bots that learn</span><span>Bring your own model</span><span>Next.js 16</span><span>React 19</span><span>Tailwind v4</span><span>three.js + React Three Fiber</span><span>React Flow</span><span>Mermaid</span><span>Claude, GPT and Gemini</span><span>Bitrix24 REST</span><span>n8n API and MCP</span><span>Metabase API</span><span>SMTP</span></div></div>
 <section class="px-sec"><div class="px-w"><p class="px-k" style="color:var(--mid)">The problem</p><p class="px-big">At an education company with 149 Bitrix24 smart processes, hundreds of n8n workflows and a Metabase BI layer, automation knowledge lived in a few heads. Failures were found late, the same small requests kept coming back, and nobody had one place showing what ran, what broke and what to automate next.</p><p class="px-big2" data-rev><b>The solution.</b> A web app that reads the company&#x27;s own systems, turns them into a living picture with a daily trail of what changed, what is breaking and what is worth automating, and puts an AI team to work on it.</p><div class="px-facts"><div class="px-fact" data-rev><b>13</b><span>AI teammates</span></div><div class="px-fact" data-rev><b>149</b><span>Bitrix24 smart processes read</span></div><div class="px-fact" data-rev><b>3</b><span>AI model families: Claude, GPT, Gemini</span></div><div class="px-fact" data-rev><b>1</b><span>human approving every change</span></div></div></div></section>
 <section class="px-sec" style="padding-bottom:0"><div class="px-w"><p class="px-k" style="color:var(--mid)">How it works</p><div class="px-steps" id="pxsteps" style="--sn:5"><div class="px-st"><span class="d">1</span><h3>Connect</h3><p>Bitrix24, n8n and Metabase are read live.</p></div><div class="px-st"><span class="d">2</span><h3>Discover</h3><p>A daily trail shows what changed, what breaks and what to automate.</p></div><div class="px-st"><span class="d">3</span><h3>Give a task</h3><p>A lead bot plans it as a ticket.</p></div><div class="px-st"><span class="d">4</span><h3>The team works</h3><p>The right specialists do their steps and talk it through.</p></div><div class="px-st"><span class="d">5</span><h3>You approve</h3><p>Every change is backed up and can be undone.</p></div></div></div></section>
-<section class="px-show" style="--n:11" data-caps='["The day&#39;s trail, written from live data", "Give the team a task, with the cost per ticket", "The team working in a live 3D office", "Plan, steps, bot hand-offs and the result", "Level, KPIs, working hours and achievements", "A Bitrix24 process explained in plain language", "Every stage, field code and list option ID", "A real process and its automation, drawn from the system", "The same board in the Blueprint theme", "Connected systems", "The models the team runs on"]' aria-label="Screens"><div class="px-pin">
-<div><p class="px-k" style="color:var(--mid);margin-bottom:10px">The screens</p><div class="px-list"><button type="button"><i>01</i><b>Overview</b></button><button type="button"><i>02</i><b>Tasks</b></button><button type="button"><i>03</i><b>3D office</b></button><button type="button"><i>04</i><b>Ticket room</b></button><button type="button"><i>05</i><b>Teammate</b></button><button type="button"><i>06</i><b>Process</b></button><button type="button"><i>07</i><b>Fields &amp; IDs</b></button><button type="button"><i>08</i><b>Board</b></button><button type="button"><i>09</i><b>Blueprint</b></button><button type="button"><i>10</i><b>Systems</b></button><button type="button"><i>11</i><b>AI models</b></button></div><p class="px-cap" aria-live="polite"></p></div>
-<div class="px-frame"><div class="px-screen"><div class="bar"><i></i><i></i><i></i></div><div class="px-img"><img src="assets/cr-01.jpg" alt="Cairn, the day&#x27;s trail, written from live data" ><img src="assets/cr-02.jpg" alt="Cairn, give the team a task, with the cost per ticket" loading="lazy"><img src="assets/cr-03.jpg" alt="Cairn, the team working in a live 3d office" loading="lazy"><img src="assets/cr-04.jpg" alt="Cairn, plan, steps, bot hand-offs and the result" loading="lazy"><img src="assets/cr-05.jpg" alt="Cairn, level, kpis, working hours and achievements" loading="lazy"><img src="assets/cr-06.jpg" alt="Cairn, a bitrix24 process explained in plain language" loading="lazy"><img src="assets/cr-07.jpg" alt="Cairn, every stage, field code and list option id" loading="lazy"><img src="assets/cr-08.jpg" alt="Cairn, a real process and its automation, drawn from the system" loading="lazy"><img src="assets/cr-08.jpg" alt="Cairn, the same board in the blueprint theme" loading="lazy"><img src="assets/cr-09.jpg" alt="Cairn, connected systems" loading="lazy"><img src="assets/cr-10.jpg" alt="Cairn, the models the team runs on" loading="lazy"></div></div></div>
+<section class="px-show" style="--n:5" data-caps='["The day&#39;s trail, written from live data", "Give the team a task, with the cost per ticket", "The team working in a live 3D office", "Plan, steps, bot hand-offs and the result", "A real process and its automation, drawn from the system"]' aria-label="Screens"><div class="px-pin">
+<div><p class="px-k" style="color:var(--mid);margin-bottom:10px">The screens</p><div class="px-list"><button type="button"><i>01</i><b>Overview</b></button><button type="button"><i>02</i><b>Tasks</b></button><button type="button"><i>03</i><b>3D office</b></button><button type="button"><i>04</i><b>Ticket room</b></button><button type="button"><i>05</i><b>Board</b></button></div><p class="px-cap" aria-live="polite"></p></div>
+<div class="px-frame"><div class="px-screen"><div class="bar"><i></i><i></i><i></i></div><div class="px-img"><img src="assets/cr-01.jpg" alt="Cairn, the day&#x27;s trail, written from live data" ><img src="assets/cr-02.jpg" alt="Cairn, give the team a task, with the cost per ticket" loading="lazy"><img src="assets/cr-03.jpg" alt="Cairn, the team working in a live 3d office" loading="lazy"><img src="assets/cr-04.jpg" alt="Cairn, plan, steps, bot hand-offs and the result" loading="lazy"><img src="assets/cr-08.jpg" alt="Cairn, a real process and its automation, drawn from the system" loading="lazy"></div></div></div>
 </div></section>
 <section class="px-sec" style="padding-top:0"><div class="px-w"><p class="px-k" style="color:var(--mid);margin-bottom:18px">What it does</p><div class="px-feats"><article class="px-f" data-rev><span class="n">01</span><h3>13 AI teammates</h3><p>Each has a role, a character and only the access it needs: n8n developer, Bitrix24 developer, Metabase analyst, researcher, QA, security reviewer and more.</p></article><article class="px-f" data-rev><span class="n">02</span><h3>Tickets, not chats</h3><p>A lead bot plans the task, the right specialists do their steps, and the ticket stays open until the goal is reached. You can reply, redirect or stop it.</p></article><article class="px-f" data-rev><span class="n">03</span><h3>Approval first</h3><p>Bots never change a system silently. Every change arrives as an approval card, is backed up and can be undone.</p></article><article class="px-f" data-rev><span class="n">04</span><h3>A live 3D office</h3><p>The team works at their desks in a three.js office set in Amman, with day and night, meetings and a coffee break.</p></article><article class="px-f" data-rev><span class="n">05</span><h3>Bots that learn</h3><p>From articles you give them, from release notes, and from their own finished tasks. Profiles show KPIs, levels and achievements earned from real work.</p></article><article class="px-f" data-rev><span class="n">06</span><h3>Bring your own model</h3><p>Works with Claude, GPT and Gemini. The team picks a default, each bot can have its own, and every ticket shows its tokens and cost.</p></article></div>
 <div class="px-two"><div class="px-p" data-rev><h3>Also inside</h3><ul>
@@ -1477,6 +1525,7 @@
   var caps = JSON.parse(show.dataset.caps), n = imgs.length, cur = -1, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function set(i){ if (i === cur) return; cur = i; imgs.forEach(function(m, k){ m.classList.toggle('on', k === i); }); btns.forEach(function(b, k){ b.classList.toggle('on', k === i); }); cap.textContent = caps[i]; var b = btns[i]; if (b && b.parentNode.scrollWidth > b.parentNode.clientWidth) b.parentNode.scrollTo({left: b.offsetLeft - 20, behavior: 'smooth'}); }
   function u(){
+    if (innerWidth <= 900) return;
     var r = show.getBoundingClientRect(), total = show.offsetHeight - innerHeight, p = Math.max(0, Math.min(1, -r.top / Math.max(1, total)));
     set(Math.min(n - 1, Math.floor(p * n)));
     if (!reduce){ scr.style.setProperty('--ry', ((p - .5) * -10).toFixed(2) + 'deg'); scr.style.setProperty('--rx', (Math.sin(p * Math.PI) * 4).toFixed(2) + 'deg'); }
@@ -1524,6 +1573,52 @@
     var sts = sw.querySelectorAll('.px-st');
     function u(){ var r = sw.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / (r.height + innerHeight * .1))); var n = Math.round(p * sts.length + .2); sts.forEach(function(x, i){ x.classList.toggle('on', i < n); }); sw.style.setProperty('--sp', (Math.max(0, n - 1) / (sts.length - 1) * 92) + '%'); }
     addEventListener('scroll', u, {passive: true}); u();
+  }
+})();
+</script>
+<script>
+(function(){
+  var PAGES = ["together", "cairn", "candor"], ME = 'cairn';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* a rail of the chapters on this page (wide screens only) */
+  var defs = [['Intro', '.px-hero'], ['At a glance', '.px-glance'], ['Why', function(){ var b = document.querySelector('.px-big'); return b && b.closest('section'); }], ['How it works', function(){ var b = document.getElementById('pxsteps'); return b && b.closest('section'); }], ['Screens', '.px-show'], ['What it does', function(){ var b = document.querySelector('.px-feats'); return b && b.closest('section'); }], ['Built with', function(){ var b = document.querySelector('.px-two'); return b && b.closest('section'); }], ['Next', '.px-next']];
+  var items = [];
+  defs.forEach(function(d){ var el = typeof d[1] === 'string' ? document.querySelector(d[1]) : d[1](); if (el) items.push({name: d[0], el: el}); });
+  var rail = document.createElement('nav'); rail.className = 'px-rail'; rail.setAttribute('aria-label', 'On this page');
+  items.forEach(function(it, i){
+    var b = document.createElement('button'); b.type = 'button'; b.innerHTML = '<span>' + it.name + '</span><i></i>'; b.setAttribute('aria-label', 'Jump to ' + it.name);
+    b.addEventListener('click', function(){ scrollTo({top: it.el.getBoundingClientRect().top + scrollY - 10, behavior: reduce ? 'auto' : 'smooth'}); });
+    it.b = b; rail.appendChild(b);
+  });
+  var hint = document.createElement('div'); hint.className = 'hint'; hint.innerHTML = '&larr; &rarr; projects'; rail.appendChild(hint);
+  document.body.appendChild(rail);
+  function spy(){
+    var cur = 0, y = innerHeight * .4;
+    items.forEach(function(it, i){ if (it.el.getBoundingClientRect().top <= y) cur = i; });
+    items.forEach(function(it, i){ it.b.classList.toggle('on', i === cur); });
+    var r = items[cur].el.getBoundingClientRect(), light = cur !== 0 && cur !== 4 && cur !== 6 && cur !== 7;
+    document.body.classList.toggle('px-light-section', light);
+  }
+  addEventListener('scroll', spy, {passive: true}); addEventListener('resize', spy); spy();
+  /* left and right arrow keys move between the projects */
+  addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+    var t = e.target; if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName))) return;
+    var i = PAGES.indexOf(ME); if (i < 0) return;
+    if (e.key === 'ArrowRight') location.href = 'project-' + PAGES[(i + 1) % PAGES.length] + '.html';
+    if (e.key === 'ArrowLeft') location.href = 'project-' + PAGES[(i + PAGES.length - 1) % PAGES.length] + '.html';
+  });
+  /* phones: the screens are a swipeable strip with dots */
+  var show = document.querySelector('.px-show');
+  if (show){
+    var wrap = show.querySelector('.px-img'), n = wrap.children.length, sw = document.createElement('div'); sw.className = 'px-swipe';
+    sw.innerHTML = '<span>swipe</span>' + new Array(n + 1).join('<i></i>'); show.querySelector('.px-frame').appendChild(sw);
+    var dots = sw.querySelectorAll('i'), btns = show.querySelectorAll('.px-list button'), cap = show.querySelector('.px-cap'), caps = JSON.parse(show.dataset.caps);
+    function idx(){ return Math.max(0, Math.min(n - 1, Math.round(wrap.scrollLeft / Math.max(1, wrap.clientWidth)))); }
+    function mark(){ var i = idx(); dots.forEach(function(d, k){ d.classList.toggle('on', k === i); }); if (innerWidth <= 900){ btns.forEach(function(b, k){ b.classList.toggle('on', k === i); }); cap.textContent = caps[i]; } }
+    wrap.addEventListener('scroll', function(){ requestAnimationFrame(mark); }, {passive: true});
+    btns.forEach(function(b, i){ b.addEventListener('click', function(e){ if (innerWidth > 900) return; e.stopImmediatePropagation(); wrap.scrollTo({left: i * wrap.clientWidth, behavior: reduce ? 'auto' : 'smooth'}); }, true); });
+    mark();
   }
 })();
 </script>

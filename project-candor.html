@@ -1402,6 +1402,54 @@
   .sg-tg{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:12px;} .seg{display:inline-flex;padding:4px;border-radius:999px;background:#E3F2EA;gap:2px;} .seg button{padding:7px 13px;border:0;border-radius:999px;background:transparent;font:inherit;font-weight:700;font-size:14px;color:#0b5a33;cursor:pointer;} .seg button.on{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.15);}
   @media (max-width:900px){ .px-glance{grid-template-columns:1fr;} .px-steps{grid-template-columns:1fr;} .px-steps::before,.px-steps::after{display:none;} .px-st{display:grid;grid-template-columns:54px 1fr;column-gap:14px;} .px-st .d{grid-row:span 2;} .px-st h3{margin:2px 0 4px;} }
   @media (prefers-reduced-motion:reduce){ .sg *{animation:none !important;} }
+
+  /* phones: one column, readable sizes, nothing wider than the screen */
+  @media (max-width:900px){
+    html,body.px{overflow-x:clip;max-width:100%;}
+    body.px .px-hero,body.px-together .px-hero,body.px-cairn .px-hero,body.px-candor .px-hero{grid-template-columns:minmax(0,1fr) !important;min-height:0;padding:96px 18px 46px;gap:34px;align-items:start;}
+    body.px .px-copy{min-width:0;}
+    body.px .px-title,body.px-together .px-title{font-size:clamp(46px,16vw,76px) !important;gap:14px;letter-spacing:-.05em;flex-wrap:nowrap;}
+    body.px .px-logo{width:clamp(50px,15vw,76px);height:clamp(50px,15vw,76px);}
+    body.px .px-lead{font-size:17px;line-height:1.5;}
+    body.px .px-meta li{flex:1 1 100%;max-width:none;}
+    body.px .sg{width:100%;max-width:460px;margin:0 auto;min-width:0;}
+    body.px .px-nav{max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none;top:10px;} body.px .px-nav::-webkit-scrollbar{display:none;}
+    body.px .px-nav a{padding:8px 13px;font-size:14px;}
+    body.px .px-band{margin:-14px -8% 0;}
+    body.px .px-w,body.px .px-sec{min-width:0;}
+    body.px .px-big{font-size:clamp(26px,7.6vw,40px);line-height:1.18;}
+    body.px .px-glance{padding-inline:18px;}
+    body.px img,body.px video{max-width:100%;}
+    body.px .px-foot{padding-bottom:110px;}
+    body.px .px-feats{grid-template-columns:minmax(0,1fr) !important;}
+    body.px .px-f,body.px .px-f:nth-child(n){grid-column:1 / -1 !important;}
+  }
+
+  /* ---------- project pages: section rail, keyboard hint, swipeable screens on phones ---------- */
+  .px-rail{display:none;}
+  @media (min-width:1280px){
+    .px-rail{display:flex;flex-direction:column;gap:2px;position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:60;padding:10px 8px 8px;border-radius:22px;background:rgba(20,20,28,.5);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22);}
+    .px-rail button{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:5px 4px 5px 10px;border:0;background:none;color:#fff;font:700 13px 'Bricolage Grotesque',sans-serif;cursor:pointer;border-radius:999px;}
+    .px-rail button span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .3s ease,opacity .25s ease;}
+    .px-rail:hover button span,.px-rail button.on span{max-width:120px;opacity:1;}
+    .px-rail button i{display:block;width:11px;height:11px;border-radius:50%;border:2.5px solid #fff;background:transparent;transition:background-color .2s ease,transform .2s ease;flex:none;}
+    .px-rail button.on i{background:var(--acc);border-color:var(--acc);transform:scale(1.3);}
+    .px-rail .hint{margin:6px 4px 0;padding-top:7px;border-top:1px solid rgba(255,255,255,.25);font:500 10.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:rgba(255,255,255,.75);text-align:center;white-space:nowrap;}
+    body.px-light-section .px-rail{background:rgba(255,255,255,.72);border-color:rgba(20,20,28,.18);} body.px-light-section .px-rail button{color:#14171B;} body.px-light-section .px-rail button i{border-color:#14171B;} body.px-light-section .px-rail .hint{color:#4a4f5a;border-color:rgba(20,20,28,.2);}
+  }
+  @media (max-width:900px){
+    .px-show{height:auto !important;}
+    .px-pin{position:static !important;height:auto !important;padding:54px 0 10px !important;gap:12px !important;}
+    .px-pin > div:first-child{padding:0 18px;}
+    .px-frame{padding:0;perspective:none;}
+    .px-screen{transform:none !important;margin:0 !important;border-radius:0 !important;border-inline:0 !important;box-shadow:none !important;}
+    .px-img{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;aspect-ratio:auto !important;gap:0;scrollbar-width:none;background:transparent;-webkit-overflow-scrolling:touch;}
+    .px-img::-webkit-scrollbar{display:none;}
+    .px-img img{position:static !important;flex:0 0 100%;width:100%;height:auto !important;aspect-ratio:16/10;object-fit:cover;opacity:1 !important;transform:none !important;scroll-snap-align:center;}
+    .px-swipe{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;font:500 11.5px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+    .px-swipe i{display:block;width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.3;transition:opacity .2s ease,width .2s ease;} .px-swipe i.on{opacity:1;width:22px;border-radius:5px;color:var(--mid);background:var(--mid);}
+  }
+  @media (min-width:901px){ .px-swipe{display:none;} }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet"></head>
 <body class="px px-candor" style="--dark:#073D24;--mid:#0C7A45;--acc:#7CE3A9;--soft:#E2F7EA;--ink0:#14171B;--mute:#5A5A66;--nmid:#6A49C4;">
@@ -1429,9 +1477,9 @@
 <div class="px-band" aria-hidden="true"><div><span>Job to plan in minutes</span><span>Screening that shows its work</span><span>Autonomy you control</span><span>Automations</span><span>CV intake</span><span>A report in 20 seconds</span><span>Supabase</span><span>Postgres</span><span>Auth</span><span>Edge Functions</span><span>Realtime</span><span>pg_cron</span><span>Gemini text</span><span>Gemini Live voice</span><span>Vanilla JavaScript</span><span>Row-level security</span><span>Job to plan in minutes</span><span>Screening that shows its work</span><span>Autonomy you control</span><span>Automations</span><span>CV intake</span><span>A report in 20 seconds</span><span>Supabase</span><span>Postgres</span><span>Auth</span><span>Edge Functions</span><span>Realtime</span><span>pg_cron</span><span>Gemini text</span><span>Gemini Live voice</span><span>Vanilla JavaScript</span><span>Row-level security</span></div></div>
 <section class="px-sec"><div class="px-w"><p class="px-k" style="color:var(--mid)">The problem</p><p class="px-big">Recruiters spend most of their week on repetitive work: reading CVs, chasing replies, scheduling and running the same first-round screening call again and again. Candidates wait days for a reply, and Arabic-speaking candidates are usually screened in a second language.</p><p class="px-big2" data-rev><b>For the candidate.</b> A simple link, with no account, no app and no camera. Ayla, an AI interviewer, holds a live speech-to-speech conversation in Jordanian Arabic or English, follows the job&#x27;s interview plan, asks one follow-up when an answer is vague, and stays in the chosen language.</p><div class="px-facts"><div class="px-fact" data-rev><b>2</b><span>languages: Arabic and English</span></div><div class="px-fact" data-rev><b>0</b><span>accounts or apps for candidates</span></div><div class="px-fact" data-rev><b>20s</b><span>to read a report</span></div><div class="px-fact" data-rev><b>~1 min</b><span>for the report after the call</span></div></div></div></section>
 <section class="px-sec" style="padding-bottom:0"><div class="px-w"><p class="px-k" style="color:var(--mid)">How it works</p><div class="px-steps" id="pxsteps" style="--sn:5"><div class="px-st"><span class="d">1</span><h3>Describe the job</h3><p>Chat or paste a description. Candor drafts the plan.</p></div><div class="px-st"><span class="d">2</span><h3>Screen</h3><p>Scores come from evidence in the CV, not a guess.</p></div><div class="px-st"><span class="d">3</span><h3>Reach out</h3><p>Messages and scheduling wait for your approval.</p></div><div class="px-st"><span class="d">4</span><h3>Ayla interviews</h3><p>A live voice conversation in Arabic or English.</p></div><div class="px-st"><span class="d">5</span><h3>Read the report</h3><p>Verified quotes. A person decides.</p></div></div></div></section>
-<section class="px-show" style="--n:8" data-caps='["The recruiter&#39;s day: what needs a decision", "A job, its stages and the people Candor found", "The candidate checks language, microphone and consent", "Ayla listens, with a live wave and captions", "A calm thinking state between answers", "Ayla asks the next question", "The interview ends with a clear thank-you", "The same room in Arabic, right to left"]' aria-label="Screens"><div class="px-pin">
-<div><p class="px-k" style="color:var(--mid);margin-bottom:10px">The screens</p><div class="px-list"><button type="button"><i>01</i><b>Today</b></button><button type="button"><i>02</i><b>A job</b></button><button type="button"><i>03</i><b>Lobby</b></button><button type="button"><i>04</i><b>Listening</b></button><button type="button"><i>05</i><b>Thinking</b></button><button type="button"><i>06</i><b>Speaking</b></button><button type="button"><i>07</i><b>Thank you</b></button><button type="button"><i>08</i><b>Arabic</b></button></div><p class="px-cap" aria-live="polite"></p></div>
-<div class="px-frame"><div class="px-screen"><div class="bar"><i></i><i></i><i></i></div><div class="px-img"><img src="assets/cd-r1.jpg" alt="Candor, the recruiter&#x27;s Today screen" ><img src="assets/cd-r2.jpg" alt="Candor, a job with the people Candor found" loading="lazy"><img src="assets/cd-1.jpg" alt="Candor, the candidate checks language, microphone and consent" loading="lazy"><img src="assets/cd-2.jpg" alt="Candor, ayla listens, with a live wave and captions" loading="lazy"><img src="assets/cd-3.jpg" alt="Candor, a calm thinking state between answers" loading="lazy"><img src="assets/cd-4.jpg" alt="Candor, ayla asks the next question" loading="lazy"><img src="assets/cd-5.jpg" alt="Candor, the interview ends with a clear thank-you" loading="lazy"><img src="assets/cd-6.jpg" alt="Candor, the same room in arabic, right to left" loading="lazy"></div></div><div class="px-ph" aria-hidden="true"><img src="assets/cd-phone-1.jpg" alt="" loading="lazy"><img src="assets/cd-phone-2.jpg" alt="" loading="lazy"></div></div>
+<section class="px-show" style="--n:5" data-caps='["The recruiter&#39;s day: what needs a decision", "A job, its stages and the people Candor found", "The candidate checks language, microphone and consent", "Ayla listens, with a live wave and captions", "The same room in Arabic, right to left"]' aria-label="Screens"><div class="px-pin">
+<div><p class="px-k" style="color:var(--mid);margin-bottom:10px">The screens</p><div class="px-list"><button type="button"><i>01</i><b>Today</b></button><button type="button"><i>02</i><b>A job</b></button><button type="button"><i>03</i><b>Lobby</b></button><button type="button"><i>04</i><b>Listening</b></button><button type="button"><i>05</i><b>Arabic</b></button></div><p class="px-cap" aria-live="polite"></p></div>
+<div class="px-frame"><div class="px-screen"><div class="bar"><i></i><i></i><i></i></div><div class="px-img"><img src="assets/cd-r1.jpg" alt="Candor, the recruiter&#x27;s Today screen" ><img src="assets/cd-r2.jpg" alt="Candor, a job with the people Candor found" loading="lazy"><img src="assets/cd-1.jpg" alt="Candor, the candidate checks language, microphone and consent" loading="lazy"><img src="assets/cd-2.jpg" alt="Candor, ayla listens, with a live wave and captions" loading="lazy"><img src="assets/cd-6.jpg" alt="Candor, the same room in arabic, right to left" loading="lazy"></div></div></div>
 </div></section>
 <section class="px-sec" style="padding-top:0"><div class="px-w"><p class="px-k" style="color:var(--mid);margin-bottom:18px">What it does</p><div class="px-feats"><article class="px-f" data-rev><span class="n">01</span><h3>Job to plan in minutes</h3><p>Chat with the assistant or paste a job description. It extracts the must-haves and drafts an editable interview plan.</p></article><article class="px-f" data-rev><span class="n">02</span><h3>Screening that shows its work</h3><p>Each score comes from per-requirement evidence, not from an AI-invented number. Every quote in a report is checked against the CV or the transcript.</p></article><article class="px-f" data-rev><span class="n">03</span><h3>Autonomy you control</h3><p>Modes from &quot;ask me first&quot; to &quot;run on its own&quot;. Anything that contacts a candidate can wait for approval, and every action is logged with a reason.</p></article><article class="px-f" data-rev><span class="n">04</span><h3>Automations</h3><p>Visual workflows with delays, conditions, retries and approvals, running on a scheduler on the server.</p></article><article class="px-f" data-rev><span class="n">05</span><h3>CV intake</h3><p>Drop PDF or Word CVs, Arabic or English, and each becomes a screened candidate.</p></article><article class="px-f" data-rev><span class="n">06</span><h3>A report in 20 seconds</h3><p>Summary, verified strongest moments, requirement-by-requirement evidence, plan coverage, concerns and follow-up questions.</p></article></div>
 <div class="px-two"><div class="px-p" data-rev><h3>Design decisions</h3><ul>
@@ -1480,6 +1528,7 @@
   var caps = JSON.parse(show.dataset.caps), n = imgs.length, cur = -1, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function set(i){ if (i === cur) return; cur = i; imgs.forEach(function(m, k){ m.classList.toggle('on', k === i); }); btns.forEach(function(b, k){ b.classList.toggle('on', k === i); }); cap.textContent = caps[i]; var b = btns[i]; if (b && b.parentNode.scrollWidth > b.parentNode.clientWidth) b.parentNode.scrollTo({left: b.offsetLeft - 20, behavior: 'smooth'}); }
   function u(){
+    if (innerWidth <= 900) return;
     var r = show.getBoundingClientRect(), total = show.offsetHeight - innerHeight, p = Math.max(0, Math.min(1, -r.top / Math.max(1, total)));
     set(Math.min(n - 1, Math.floor(p * n)));
     if (!reduce){ scr.style.setProperty('--ry', ((p - .5) * -10).toFixed(2) + 'deg'); scr.style.setProperty('--rx', (Math.sin(p * Math.PI) * 4).toFixed(2) + 'deg'); }
@@ -1527,6 +1576,52 @@
     var sts = sw.querySelectorAll('.px-st');
     function u(){ var r = sw.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / (r.height + innerHeight * .1))); var n = Math.round(p * sts.length + .2); sts.forEach(function(x, i){ x.classList.toggle('on', i < n); }); sw.style.setProperty('--sp', (Math.max(0, n - 1) / (sts.length - 1) * 92) + '%'); }
     addEventListener('scroll', u, {passive: true}); u();
+  }
+})();
+</script>
+<script>
+(function(){
+  var PAGES = ["together", "cairn", "candor"], ME = 'candor';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* a rail of the chapters on this page (wide screens only) */
+  var defs = [['Intro', '.px-hero'], ['At a glance', '.px-glance'], ['Why', function(){ var b = document.querySelector('.px-big'); return b && b.closest('section'); }], ['How it works', function(){ var b = document.getElementById('pxsteps'); return b && b.closest('section'); }], ['Screens', '.px-show'], ['What it does', function(){ var b = document.querySelector('.px-feats'); return b && b.closest('section'); }], ['Built with', function(){ var b = document.querySelector('.px-two'); return b && b.closest('section'); }], ['Next', '.px-next']];
+  var items = [];
+  defs.forEach(function(d){ var el = typeof d[1] === 'string' ? document.querySelector(d[1]) : d[1](); if (el) items.push({name: d[0], el: el}); });
+  var rail = document.createElement('nav'); rail.className = 'px-rail'; rail.setAttribute('aria-label', 'On this page');
+  items.forEach(function(it, i){
+    var b = document.createElement('button'); b.type = 'button'; b.innerHTML = '<span>' + it.name + '</span><i></i>'; b.setAttribute('aria-label', 'Jump to ' + it.name);
+    b.addEventListener('click', function(){ scrollTo({top: it.el.getBoundingClientRect().top + scrollY - 10, behavior: reduce ? 'auto' : 'smooth'}); });
+    it.b = b; rail.appendChild(b);
+  });
+  var hint = document.createElement('div'); hint.className = 'hint'; hint.innerHTML = '&larr; &rarr; projects'; rail.appendChild(hint);
+  document.body.appendChild(rail);
+  function spy(){
+    var cur = 0, y = innerHeight * .4;
+    items.forEach(function(it, i){ if (it.el.getBoundingClientRect().top <= y) cur = i; });
+    items.forEach(function(it, i){ it.b.classList.toggle('on', i === cur); });
+    var r = items[cur].el.getBoundingClientRect(), light = cur !== 0 && cur !== 4 && cur !== 6 && cur !== 7;
+    document.body.classList.toggle('px-light-section', light);
+  }
+  addEventListener('scroll', spy, {passive: true}); addEventListener('resize', spy); spy();
+  /* left and right arrow keys move between the projects */
+  addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+    var t = e.target; if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName))) return;
+    var i = PAGES.indexOf(ME); if (i < 0) return;
+    if (e.key === 'ArrowRight') location.href = 'project-' + PAGES[(i + 1) % PAGES.length] + '.html';
+    if (e.key === 'ArrowLeft') location.href = 'project-' + PAGES[(i + PAGES.length - 1) % PAGES.length] + '.html';
+  });
+  /* phones: the screens are a swipeable strip with dots */
+  var show = document.querySelector('.px-show');
+  if (show){
+    var wrap = show.querySelector('.px-img'), n = wrap.children.length, sw = document.createElement('div'); sw.className = 'px-swipe';
+    sw.innerHTML = '<span>swipe</span>' + new Array(n + 1).join('<i></i>'); show.querySelector('.px-frame').appendChild(sw);
+    var dots = sw.querySelectorAll('i'), btns = show.querySelectorAll('.px-list button'), cap = show.querySelector('.px-cap'), caps = JSON.parse(show.dataset.caps);
+    function idx(){ return Math.max(0, Math.min(n - 1, Math.round(wrap.scrollLeft / Math.max(1, wrap.clientWidth)))); }
+    function mark(){ var i = idx(); dots.forEach(function(d, k){ d.classList.toggle('on', k === i); }); if (innerWidth <= 900){ btns.forEach(function(b, k){ b.classList.toggle('on', k === i); }); cap.textContent = caps[i]; } }
+    wrap.addEventListener('scroll', function(){ requestAnimationFrame(mark); }, {passive: true});
+    btns.forEach(function(b, i){ b.addEventListener('click', function(e){ if (innerWidth > 900) return; e.stopImmediatePropagation(); wrap.scrollTo({left: i * wrap.clientWidth, behavior: reduce ? 'auto' : 'smooth'}); }, true); });
+    mark();
   }
 })();
 </script>
