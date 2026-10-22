@@ -368,6 +368,17 @@
     .keycard .keywrap:nth-child(n) .cap{grid-row:5;align-self:start;}
   }
 
+  /* phone: contact is four tappable rows, no keyboard hint */
+  @media (max-width:640px){
+    .keycard .psst{display:none;}
+    .keycard .keys{grid-template-columns:minmax(0,1fr);row-gap:12px;margin-top:6px;}
+    .keycard .keywrap{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto;column-gap:14px;justify-items:start;align-items:center;padding:10px 14px 10px 10px;border-radius:22px;background:rgba(255,255,255,.6);border:2px solid rgba(27,27,34,.12);}
+    .keycard .keywrap .key{grid-row:1;grid-column:1;width:68px;justify-self:center;}
+    .keycard .keywrap .arrow{display:none;}
+    .keycard .keywrap:nth-child(n) .cap{grid-row:1;grid-column:2;align-self:center;text-align:left;font-size:22px;max-width:none;line-height:1.1;}
+    html[data-theme="night"] .keycard .keywrap{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
+    .keycard .mailto{margin-top:16px;font-size:17px;}
+  }
   .note-logos span.wide{height:auto;padding:8px 12px;}
   .note-logos .wide img{height:32px;}
   @media (max-width:820px){ .note{translate:var(--dx,0px) var(--dy,0px);} }
@@ -404,6 +415,13 @@
   @media (max-width:820px){ nav.dock .d-opt{display:none;} nav.dock a{padding:10px 14px;} }
   @media (max-width:640px){ nav.dock .d-cta,nav.dock .sep{display:none;} nav.dock a{padding:10px 12px;font-size:15px;} nav.dock a.is-active svg{display:none;} }
   @media (max-width:420px){ nav.dock{max-width:calc(100vw - 12px);} nav.dock a{padding:10px 9px;font-size:14px;} }
+  /* phone: the dock becomes a bottom tab bar, icon over label, thumb-sized */
+  @media (max-width:640px){
+    nav.dock{width:calc(100vw - 20px);max-width:420px;bottom:calc(10px + env(safe-area-inset-bottom,0px));justify-content:space-between;gap:0;padding:5px;}
+    nav.dock a{flex:1 1 0;min-width:0;flex-direction:column;justify-content:center;gap:2px;min-height:52px;padding:6px 2px 5px;font-size:11.5px;font-weight:700;letter-spacing:-.01em;}
+    nav.dock a svg,nav.dock a.is-active svg{display:block;width:21px;height:21px;}
+    nav.dock a[data-s] .av,nav.dock a.is-active[data-s] .av{display:block;width:22px;height:22px;}
+  }
 
   /* sticky notes: an ordered stack (still draggable), never overlapping */
   .notes{min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:30px;padding-top:58px;}
@@ -946,6 +964,14 @@
   .lyr.bldw:hover img{filter:saturate(.95) contrast(.98) brightness(1.06) sepia(.06);}
   html[data-theme="night"] .lyr.bldw img{filter:brightness(.5) saturate(.8) contrast(1.1) hue-rotate(186deg);}
 
+  /* v2 buildings: painted to match the scene, day and night versions, ground included */
+  .lyr.bldw img,.lyr.spot img{filter:none;position:relative;z-index:1;transition:filter .3s ease;}
+  .lyr.bldw::before,.lyr.bldw::after{display:none;}
+  .lyr.bldw:hover img{filter:brightness(1.08);transform:none;}
+  .lyr img.n{display:none;}
+  html[data-theme="night"] .lyr img.d{display:none;} html[data-theme="night"] .lyr img.n{display:block;}
+  html[data-theme="night"] .lyr.bldw img{filter:none;} html[data-theme="night"] .lyr.bldw:hover img{filter:brightness(1.15);}
+
   /* the meadow moves in the wind: two overlapping copies sway from the roots, out of phase */
   .lyr.fg{line-height:0;}
   .lyr.fg .fgs{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:50% 100%;
@@ -1422,6 +1448,36 @@
     .s2-stage .chat-log{max-height:none;min-height:260px;}
   }
   @media (prefers-reduced-motion:reduce){ .qr,.s2-say i,.s2-toy.t3.on img{animation:none !important;} }
+
+  /* hotspots, modern: ringed dots with a soft pulse, glass pills, a stem and a hover arrow */
+  .hs .dot{left:-8px;top:-8px;width:16px;height:16px;border:3px solid var(--ring,#FF5A3C);background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.28),0 4px 14px rgba(0,0,0,.45);transition:transform .25s cubic-bezier(.2,1.5,.4,1),box-shadow .25s ease;}
+  .hs.now .dot{--ring:#FFC93C;}
+  .hs .dot::after{inset:-11px;border:2px solid rgba(255,255,255,.8);animation:ping 2.4s cubic-bezier(.2,.6,.3,1) infinite;}
+  .hs .dot::before{content:'';position:absolute;inset:-11px;border-radius:50%;border:2px solid rgba(255,255,255,.5);animation:ping 2.4s cubic-bezier(.2,.6,.3,1) .8s infinite;}
+  .hs:hover .dot,.hs:focus-visible .dot{transform:scale(1.25);box-shadow:0 0 0 6px rgba(255,255,255,.35),0 6px 18px rgba(0,0,0,.5);}
+  .hs .lbl{bottom:24px;gap:9px;padding:5px 14px 5px 5px;border:1px solid rgba(255,255,255,.28);background:linear-gradient(180deg,rgba(30,36,54,.62),rgba(14,18,30,.64));-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);box-shadow:0 10px 26px -10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.22);font-size:15px;font-weight:700;letter-spacing:-.01em;}
+  .hs .lbl img,.hs .ic{width:30px;height:30px;margin:0;border:0;box-shadow:0 0 0 2px rgba(255,255,255,.92);}
+  .hs .ic svg{width:16px;height:16px;}
+  .hs .lbl b{margin-left:2px;padding:3px 9px;font-size:11.5px;letter-spacing:.02em;background:rgba(255,255,255,.18);}
+  .hs.now .lbl{background:linear-gradient(180deg,rgba(255,110,78,.96),rgba(236,70,44,.96));border-color:rgba(255,255,255,.38);}
+  .hs.up::before{content:'';position:absolute;left:-1px;bottom:7px;width:2px;height:17px;background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.9));border-radius:2px;pointer-events:none;}
+  .hs .lbl::after{content:'\2197';font-size:14px;line-height:1;opacity:0;width:0;margin-left:-6px;overflow:hidden;transition:opacity .2s ease,width .2s ease,margin .2s ease;}
+  .hs:hover .lbl::after,.hs:focus-visible .lbl::after{opacity:.9;width:14px;margin-left:0;}
+  .hs:hover .lbl,.hs:focus-visible .lbl{background:linear-gradient(180deg,rgba(36,44,66,.86),rgba(18,22,36,.88));}
+  .hs.now:hover .lbl{background:linear-gradient(180deg,rgba(255,120,88,1),rgba(240,76,50,1));}
+  @media (prefers-reduced-motion:reduce){ .hs .dot::before{animation:none;} }
+
+  /* a little smaller */
+  .hs .dot{left:-6px;top:-6px;width:12px;height:12px;border-width:3px;box-shadow:0 0 0 3px rgba(255,255,255,.28),0 3px 10px rgba(0,0,0,.45);}
+  .hs .dot::after,.hs .dot::before{inset:-9px;}
+  .hs .lbl{bottom:19px;gap:7px;padding:4px 11px 4px 4px;font-size:13px;}
+  .hs .lbl img,.hs .ic{width:24px;height:24px;}
+  .hs .ic svg{width:13px;height:13px;}
+  .hs .lbl b{padding:2px 7px;font-size:10.5px;}
+  .hs .lbl::after{font-size:12px;}
+  .hs:hover .lbl::after,.hs:focus-visible .lbl::after{width:12px;}
+  .hs.up::before{bottom:5px;height:14px;}
+  .hs.lt .lbl{right:12px;bottom:-12px;} .hs.rt .lbl{left:12px;bottom:-12px;} .hs.dn .lbl{top:13px;}
 </style>
 </head>
 <body>
@@ -1461,13 +1517,13 @@
         <div class="scene" id="scene">
           <img class="scene-img" src="assets/scene-bg.jpg" alt="A painted hillside city with a university, a lab, a large sandstone building, three small shops and a gramophone">
           <canvas id="scene-gl" aria-hidden="true"></canvas>
-          <div class="lyr bldw" data-k="shai" style="left:48%;top:56%;width:11%"><img src="assets/b-lab.png" alt=""></div>
-          <div class="lyr bldw" data-k="univ" style="left:9.5%;top:63%;width:16%"><img src="assets/b-univ.png" alt=""></div>
-          <div class="lyr bldw" data-k="jo" style="left:30.5%;top:53%;width:17%"><img src="assets/b-jo.png" alt=""></div>
-          <div class="lyr bldw" data-k="music" style="left:79%;top:42%;width:6%"><img src="assets/b-gramophone.png" alt=""></div>
+          <div class="lyr bldw" data-k="univ" style="left:8%;top:60%;width:17%"><img class="d" src="assets/bd-univ.webp" alt=""><img class="n" src="assets/bn-univ.webp" alt=""></div>
+          <div class="lyr bldw" data-k="jo" style="left:29%;top:56%;width:17%"><img class="d" src="assets/bd-jo.webp" alt=""><img class="n" src="assets/bn-jo.webp" alt=""></div>
+          <div class="lyr bldw" data-k="shai" style="left:47.5%;top:58%;width:13%"><img class="d" src="assets/bd-shai.webp" alt=""><img class="n" src="assets/bn-shai.webp" alt=""></div>
+          <div class="lyr bldw" data-k="music" style="left:75.5%;top:38%;width:10%"><img class="d" src="assets/bd-music.webp" alt=""><img class="n" src="assets/bn-music.webp" alt=""></div>
+<div class="lyr me" data-par="8" style="left:88.5%;top:62%;width:4.6%"><img src="assets/layer-me.png" alt="" onerror="this.parentNode.remove()"></div>
           <div class="lyr plane" data-par="-16" style="top:8%"><img src="assets/layer-plane.png" alt="" onerror="this.parentNode.remove()"><span class="banner">60+ processes automated</span></div>
           <div class="lyr balloon" data-par="-12" style="left:44%;top:6%;width:6%"><img src="assets/layer-balloon.png" alt="" onerror="this.parentNode.remove()"></div>
-          <div class="lyr me" data-par="8" style="left:88.5%;top:62%;width:4.6%"><img src="assets/layer-me.png" alt="" onerror="this.parentNode.remove()"></div>
           <div class="lyr fg" data-par="24" style="left:-2%;bottom:-3%;width:104%"><img class="fgb" src="assets/layer-foreground.png" alt="" onerror="this.parentNode.remove()"></div>
       <button class="hs up " type="button" data-k="univ" style="--x:18%;--y:72%" aria-label="Al-Balqa' University 2020"><i class="dot"></i><span class="lbl"><img class="ic" src="assets/bau-logo.png" alt="">Al-Balqa' University<b>2020</b></span></button>
       <button class="hs up " type="button" data-k="shai" style="--x:53.5%;--y:62%" aria-label="SHAI for AI 2023"><i class="dot"></i><span class="lbl"><img class="ic" src="assets/shai-logo.png" alt="">SHAI for AI<b>2023</b></span></button>
@@ -2702,6 +2758,8 @@ addEventListener('pointermove', e => { mx = e.clientX / innerWidth - .5; my = e.
 const copy = document.getElementById('hero-copy'), fly = document.getElementById('fly'), hint = document.getElementById('clickhint');
 const ease = t => t * t * (3 - 2 * t);
 const lyrs = Array.from(document.querySelectorAll('.lyr[data-par]'));
+const dotMap = {univ: [.5, .5], jo: [.5, .46], shai: [.5, .44], music: [.46, .4], me: [.5, .32]};
+const dots = Object.keys(dotMap).map(k => ({h: document.querySelector('.hs[data-k="' + k + '"]'), l: k === 'me' ? document.querySelector('.lyr.me') : document.querySelector('.lyr[data-k="' + k + '"]'), f: dotMap[k]})).filter(d => d.h && d.l);
 const cur = {z: 1.04, x: 0, y: 0};
 function frame(){
   const rc = wrap.getBoundingClientRect();
@@ -2725,6 +2783,8 @@ function frame(){
     
     fly.style.opacity = clamp(1 - p * 8, 0, 1).toFixed(2);
     stage.classList.toggle('flown', p > .55);
+    /* each dot rides on its building, whatever the window shape */
+    if (dots.length){ const sw0 = scene.offsetWidth, sh0 = scene.offsetHeight; dots.forEach(d => { const l = d.l; if (!l.offsetWidth) return; d.h.style.setProperty('--x', ((l.offsetLeft + l.offsetWidth * d.f[0]) / sw0 * 100).toFixed(2) + '%'); d.h.style.setProperty('--y', ((l.offsetTop + l.offsetHeight * d.f[1]) / sh0 * 100).toFixed(2) + '%'); }); }
     renderGL();
   }
   requestAnimationFrame(frame);
